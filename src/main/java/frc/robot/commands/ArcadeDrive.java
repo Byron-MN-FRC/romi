@@ -48,6 +48,9 @@ public class ArcadeDrive extends Command {
   else {
     m_drivetrain.arcadeDrive(m_controller.getLeftY(), m_controller.getRightX());}
   }
+//FIXFIXFIX
+//can't go forward because this only takes values less than .2
+
 
   // Called once the command ends or is interrupted.
   @Override
