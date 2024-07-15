@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -91,7 +92,9 @@ public class RobotContainer {
    * @return the command to run in teleop
    */
   public Command getArcadeDriveCommand() {
-    return new ArcadeDrive(m_drivetrain, () -> m_controller.getLeftY(), () -> -m_controller.getRightX());
+    return new ArcadeDrive(m_drivetrain, 
+      () -> MathUtil.applyDeadband(m_controller.getLeftY(), Constants.stickDeadband), 
+      () -> -m_controller.getRightX());
 
 }
 }
