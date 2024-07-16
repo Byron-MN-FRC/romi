@@ -33,6 +33,7 @@ public class RobotContainer {
 
   // Assumes a gamepad plugged into channel 0
   public final XboxController m_controller = new XboxController(0);
+  //public final Joystick m_controller = new Joystick(0);
 
   // Create SmartDashboard chooser for autonomous routines
   private final SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -93,8 +94,11 @@ public class RobotContainer {
    */
   public Command getArcadeDriveCommand() {
     return new ArcadeDrive(m_drivetrain, 
-      () -> MathUtil.applyDeadband(m_controller.getLeftY(), Constants.stickDeadband), 
-      () -> -m_controller.getRightX());
+    () -> MathUtil.applyDeadband(m_controller.getLeftY(), Constants.stickDeadband)/1.3, 
+    () -> MathUtil.applyDeadband(-m_controller.getRightX(), Constants.stickDeadband)/1.4);
 
+          //return new ArcadeDrive(m_drivetrain, 
+      //() -> MathUtil.applyDeadband(m_controller.getLeftY(), Constants.stickDeadband)/1.3,
+      //() -> MathUtil.applyDeadband(-m_controller.getRightX(), Constants.stickDeadband)/1.4);
 }
 }
